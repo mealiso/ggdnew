@@ -1,0 +1,1111 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VEX Mod Menü — Özellik Dokümantasyonu</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    background: #ffffff;
+    color: #1a1a1a;
+    line-height: 1.6;
+    padding: 0;
+  }
+
+  .container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 40px 30px;
+  }
+
+  /* HEADER */
+  header {
+    border-bottom: 2px solid #1a1a1a;
+    padding-bottom: 24px;
+    margin-bottom: 32px;
+  }
+
+  header h1 {
+    font-size: 28px;
+    font-weight: 600;
+    letter-spacing: -0.5px;
+  }
+
+  header p {
+    color: #666;
+    margin-top: 6px;
+    font-size: 14px;
+  }
+
+  .meta {
+    display: flex;
+    gap: 24px;
+    margin-top: 14px;
+    font-size: 12px;
+    color: #666;
+  }
+
+  .meta span strong { color: #1a1a1a; }
+
+  /* NAV */
+  nav.toc {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 6px;
+    padding: 16px 20px;
+    margin-bottom: 32px;
+  }
+
+  nav.toc h2 {
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #888;
+    margin-bottom: 10px;
+    font-weight: 600;
+  }
+
+  nav.toc ol {
+    margin-left: 20px;
+    columns: 2;
+    column-gap: 30px;
+  }
+
+  nav.toc li {
+    margin-bottom: 4px;
+    font-size: 14px;
+    break-inside: avoid;
+  }
+
+  nav.toc a {
+    color: #1a1a1a;
+    text-decoration: none;
+  }
+
+  nav.toc a:hover { text-decoration: underline; }
+
+  /* SECTIONS */
+  section { margin-bottom: 40px; }
+
+  section > h2 {
+    font-size: 22px;
+    font-weight: 600;
+    border-bottom: 1px solid #e5e5e5;
+    padding-bottom: 10px;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  section > h2 .num {
+    background: #1a1a1a;
+    color: #fff;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+
+  section > h3 {
+    font-size: 16px;
+    font-weight: 600;
+    margin: 18px 0 10px;
+    color: #333;
+  }
+
+  /* TABLE */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    margin-bottom: 16px;
+  }
+
+  th, td {
+    text-align: left;
+    padding: 10px 12px;
+    border-bottom: 1px solid #eee;
+    vertical-align: top;
+  }
+
+  th {
+    background: #fafafa;
+    font-weight: 600;
+    color: #555;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  tr:hover td { background: #fcfcfc; }
+
+  /* TAGS */
+  code {
+    background: #f4f4f4;
+    padding: 1px 6px;
+    border-radius: 3px;
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 12.5px;
+    color: #c7254e;
+  }
+
+  .tag {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 3px;
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border: 1px solid;
+  }
+
+  .tag-toggle { color: #2d7d2d; border-color: #2d7d2d; background: #f0f9f0; }
+  .tag-button { color: #b8860b; border-color: #b8860b; background: #fff8e6; }
+  .tag-slider { color: #1a6fb8; border-color: #1a6fb8; background: #f0f7fc; }
+  .tag-color  { color: #c2185b; border-color: #c2185b; background: #fdf2f7; }
+  .tag-input  { color: #6a1b9a; border-color: #6a1b9a; background: #f7f2fc; }
+  .tag-info   { color: #555;    border-color: #999;    background: #f5f5f5; }
+  .tag-status { color: #00838f; border-color: #00838f; background: #e0f7fa; }
+
+  /* NOTE BOX */
+  .note {
+    background: #fff8e6;
+    border-left: 3px solid #b8860b;
+    padding: 10px 14px;
+    border-radius: 0 4px 4px 0;
+    font-size: 13px;
+    margin: 12px 0;
+    color: #555;
+  }
+
+  .note strong { color: #1a1a1a; }
+
+  /* DESC */
+  .desc { color: #444; font-size: 13.5px; }
+
+  /* KEY-VALUE GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+    margin-bottom: 16px;
+  }
+
+  .item {
+    background: #fafafa;
+    border: 1px solid #e5e5e5;
+    border-radius: 5px;
+    padding: 10px 14px;
+  }
+
+  .item .name {
+    font-weight: 600;
+    font-size: 13px;
+    color: #1a1a1a;
+    margin-bottom: 4px;
+  }
+
+  .item .what {
+    font-size: 12.5px;
+    color: #555;
+  }
+
+  .item .var {
+    font-family: "SF Mono", Monaco, Consolas, monospace;
+    font-size: 11px;
+    color: #888;
+    margin-top: 4px;
+  }
+
+  @media (max-width: 700px) {
+    nav.toc ol { columns: 1; }
+    .meta { flex-wrap: wrap; gap: 12px; }
+    .container { padding: 20px 16px; }
+    table { font-size: 13px; }
+    th, td { padding: 8px; }
+  }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 20px;
+    border-top: 1px solid #e5e5e5;
+    color: #888;
+    font-size: 12px;
+    text-align: center;
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+<header>
+  <h1>VEX Mod Menü — Özellik Dokümantasyonu</h1>
+  <p>Mod menüsünün tüm özellikleri, açıklamaları ve değişkenleri</p>
+  <div class="meta">
+    <span><strong>Dil sistemi:</strong> EN / TR (L makrosu)</span>
+    <span><strong>Tema:</strong> ImGui overlay (EGL hook)</span>
+  </div>
+</header>
+
+<nav class="toc">
+  <h2>İçindekiler</h2>
+  <ol>
+    <li><a href="#login">Giriş Ekranı (LoginOverlay)</a></li>
+    <li><a href="#update">Otomatik Güncelleme Akışı</a></li>
+    <li><a href="#tabs">Ana Menü Sekmeleri (Sidebar)</a></li>
+    <li><a href="#tab1">Tab 1 — Görsel (Visual)</a></li>
+    <li><a href="#tab6">Tab 6 — Yerel (Local)</a></li>
+    <li><a href="#tab2">Tab 2 — ESP</a></li>
+    <li><a href="#tab3">Tab 3 — Görünüm (Skin Changer)</a></li>
+    <li><a href="#tab4">Tab 4 — Işınlan (Teleport)</a></li>
+    <li><a href="#tab5">Tab 5 — Çeşitli (Misc)</a></li>
+    <li><a href="#tab11">Tab 11 — Takip (Follow)</a></li>
+    <li><a href="#tab10">Tab 10 — Brutal</a></li>
+    <li><a href="#tab9">Tab 9 — Cihaz Sıfırla</a></li>
+    <li><a href="#tab13">Tab 13 — Müzik Çalar</a></li>
+  </ol>
+</nav>
+
+<!-- LOGIN -->
+<section id="login">
+  <h2><span class="num">1</span> Giriş Ekranı (##LoginOverlay)</h2>
+  <p>Mod menüsü açılışta tam ekran lisans doğrulama arayüzü gösterir. <code>isLogin</code> değişkeni <code>false</code> iken render edilir.</p>
+
+  <h3>Görsel Öğeler</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Öğe</th>
+        <th>EN Metni</th>
+        <th>TR Metni</th>
+        <th>Tür</th>
+        <th>İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>VEX LOADER</code></td>
+        <td>VEX LOADER</td>
+        <td>VEX LOADER</td>
+        <td><span class="tag tag-info">BAŞLIK</span></td>
+        <td class="desc">Logo + animasyonlu başlık (neon glow + dönen kıvılcımlar).</td>
+      </tr>
+      <tr>
+        <td><code>##LoginOverlay</code></td>
+        <td>Enter your license key to continue</td>
+        <td>Devam etmek icin lisans anahtarinizi girin</td>
+        <td><span class="tag tag-info">ALT BAŞLIK</span></td>
+        <td class="desc">Giriş formunun alt başlığı.</td>
+      </tr>
+      <tr>
+        <td><code>##lang</code></td>
+        <td>Language: EN</td>
+        <td>Dil: TR</td>
+        <td><span class="tag tag-input">COMBO</span></td>
+        <td class="desc">UI dilini İngilizce / Türkçe olarak değiştirir. <code>g_LangItems[] = {"EN","TR"}</code>.</td>
+      </tr>
+      <tr>
+        <td>Dil Seçildi Bildirimi</td>
+        <td>Language Selected!</td>
+        <td>Dil Secildi!</td>
+        <td><span class="tag tag-status">BİLDİRİM</span></td>
+        <td class="desc">Dil değiştirildikten sonra 2 saniye görünen yeşil toast.</td>
+      </tr>
+      <tr>
+        <td><code>##key</code></td>
+        <td>License Key</td>
+        <td>Lisans Anahtari</td>
+        <td><span class="tag tag-input">INPUT</span></td>
+        <td class="desc">Lisans anahtarı giriş alanı (150 karakter).</td>
+      </tr>
+      <tr>
+        <td>Paste Key Butonu</td>
+        <td>Paste Key</td>
+        <td>Yapistir</td>
+        <td><span class="tag tag-button">BUTTON</span></td>
+        <td class="desc">Panodaki anahtarı <code>getClipboard()</code> ile alıp forma yapıştırır.</td>
+      </tr>
+      <tr>
+        <td><code>##loginbtn</code></td>
+        <td>Login</td>
+        <td>Giris Yap</td>
+        <td><span class="tag tag-button">BUTTON</span></td>
+        <td class="desc"><code>Login(s, gameSelection)</code> çağırır. Sonuç "OK" ise <code>isLogin = true</code> olur.</td>
+      </tr>
+      <tr>
+        <td>Buy Key Butonu</td>
+        <td>Buy Key - @vezir424</td>
+        <td>Anahtar Satin Al - @vezir424</td>
+        <td><span class="tag tag-button">BUTTON</span></td>
+        <td class="desc">Tarayıcıda https://t.me/vezir424 açar.</td>
+      </tr>
+      <tr>
+        <td>Hata Mesajı</td>
+        <td>(dinamik)</td>
+        <td>(dinamik)</td>
+        <td><span class="tag tag-info">HATA</span></td>
+        <td class="desc">Kırmızı kenarlıklı kutu. <code>err</code> değişkeni boş olmadığında ve "OK" dışında olduğunda gösterilir.</td>
+      </tr>
+      <tr>
+        <td>t.me/ghostwareglobal</td>
+        <td>t.me/ghostwareglobal</td>
+        <td>t.me/ghostwareglobal</td>
+        <td><span class="tag tag-info">FOOTER</span></td>
+        <td class="desc">Alt kısımda titreşen mor link.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Animasyonlar:</strong> Login overlay alpha fade-in (4.0 hız), scale animasyonu (0.85→1.0), aurora blob'ları (3 sinüs kaynağı), 40 parallax partikül, 6 katmanlı vignette, neon border glow (7 katman), üst gradient strip.
+  </div>
+</section>
+
+<!-- UPDATE -->
+<section id="update">
+  <h2><span class="num">2</span> Otomatik Güncelleme Akışı</h2>
+  <p>İlk frame'de <code>CheckVersionAsync()</code> çağrılır. <code>UpdateState</code> enum'una göre farklı ekranlar gösterilir ve login bloke edilir.</p>
+
+  <h3>UpdateState Durumları</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>Durum</th>
+        <th>Arayüz</th>
+        <th>Metin / İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>CHECKING</code></td>
+        <td>Tam ekran overlay + dönen nokta animasyonu</td>
+        <td class="desc">"Guncelleme kontrol ediliyor…" (3 nokta ile). Tam ekran koyu arka plan üzerinde orta hizada metin. Login bloke edilir.</td>
+      </tr>
+      <tr>
+        <td><code>UPDATE_NEEDED</code></td>
+        <td>700×480 kart + uyarı ikonu</td>
+        <td class="desc">Başlık "ZORUNLU GÜNCELLEME" (sarı). Alt metin: "Yeni bir sürüm mevcut. Devam etmek için güncelleme yapmanız gerekiyor." Buton: "Simdi Guncelle".</td>
+      </tr>
+      <tr>
+        <td><code>DOWNLOADING</code></td>
+        <td>İlerleme çubuğu + yüzde</td>
+        <td class="desc">"Indiriliyor, lutfen bekleyin..." mesajı. Progress bar <code>g_DownloadProgress</code> (0-1) ile dolar. Yüzde göstergesi 28px font ile ortada.</td>
+      </tr>
+      <tr>
+        <td><code>DONE</code></td>
+        <td>Yeşil başarı mesajı + Yeniden Baslat butonu</td>
+        <td class="desc">"Guncelleme tamamlandi!" (yeşil). "Oyunu yeniden baslatiniz." Yeniden Baslat butonu <code>RestartApp()</code> çağırır.</td>
+      </tr>
+      <tr>
+        <td><code>ERROR</code></td>
+        <td>Kırmızı hata mesajı + Güncelle butonu</td>
+        <td class="desc"><code>g_UpdateErrorMsg</code> gösterilir. İndirme URL'si varsa tekrar deneme butonu görünür.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TABS -->
+<section id="tabs">
+  <h2><span class="num">3</span> Ana Menü Sekmeleri (Sidebar)</h2>
+  <p>Login başarılı olduktan sonra ana menü açılır. Sol sütun (250px) CustomTab düğmeleri, sağ sütun tab içeriği. Sekmeler <code>gameSelection</code> lisans seviyesine göre gizlenir.</p>
+
+  <h3>Sekme Listesi</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>EN</th>
+        <th>TR</th>
+        <th>Görünürlük</th>
+        <th>Dosyadaki Yer</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>1</td><td>Visual</td><td>Gorsel</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">Ana hileler ve durum bilgisi.</td></tr>
+      <tr><td>6</td><td>Local</td><td>Yerel</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">No CD, ışınlanma ve kill menzili.</td></tr>
+      <tr><td>2</td><td>ESP</td><td>ESP</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">ESP seçenekleri.</td></tr>
+      <tr><td>3</td><td>Skin Changer</td><td>Gorunum</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">Kozmetik değiştirme.</td></tr>
+      <tr><td>4</td><td>Teleport</td><td>Isinlan</td><td><span class="tag tag-toggle">gameSelection ≠ 0</span></td><td class="desc">Harita üzerinde ışınlanma.</td></tr>
+      <tr><td>11</td><td>Follow</td><td>Follow</td><td><span class="tag tag-toggle">gameSelection ≠ 0</span></td><td class="desc">Takip / Çek / Yapış.</td></tr>
+      <tr><td>5</td><td>Misc</td><td>Cesitli</td><td><span class="tag tag-toggle">gameSelection ≠ 0</span></td><td class="desc">Çeşitli açma/kapama düğmeleri.</td></tr>
+      <tr><td>9</td><td>Reset Device ID</td><td>Cihaz Sifirla</td><td><span class="tag tag-toggle">gameSelection ≠ 0</span></td><td class="desc">HWID sıfırlama.</td></tr>
+      <tr><td>13</td><td>Music</td><td>Music</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">Müzik çalar (12 numaralı tab buraya yönlendirilir).</td></tr>
+      <tr><td>10</td><td>Brutal</td><td>Brutal</td><td><span class="tag tag-toggle">HER ZAMAN</span></td><td class="desc">Aura Kill ve Kill Geçmişi.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Lisans Tipleri:</strong> <code>gameSelection</code> switch-case'inde ESSENTIAL (0), PREMIUM (1), ULTIMATE (2) olarak tanımlıdır. <code>gameSelection != 0</code> olan sekmeler ücretsiz sürümde gizlenir.
+  </div>
+
+  <h3>Üst Bilgi Çubuğu (Header)</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Pencere Başlığı</div>
+      <div class="what">Animasyonlu mor glow ile merkezde gösterilir. Hover edildiğinde menü simgeye küçülür.</div>
+      <div class="var">window_name, interbold font</div>
+    </div>
+    <div class="item">
+      <div class="name">Üst Gradient Strip</div>
+      <div class="what">Pencerenin üst kenarında 2px'lik akan renk şeridi (RGB sinüs geçişi).</div>
+    </div>
+    <div class="item">
+      <div class="name">Neon Border</div>
+      <div class="what">Pencere etrafında 5 katmanlı pulse eden mor glow.</div>
+    </div>
+    <div class="item">
+      <div class="name">Dikey Ayırıcı</div>
+      <div class="what">250px'de DrawLineGlow ile dikey mor çizgi.</div>
+    </div>
+  </div>
+</section>
+
+<!-- TAB 1 -->
+<section id="tab1">
+  <h2><span class="num">4</span> Tab 1 — Görsel (Visual)</h2>
+  <p>Durum bilgisi, ana hileler ve lobi özellik durumu.</p>
+
+  <h3>Durum Bilgisi Alanı</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Client State</div>
+      <div class="what">Photon ağ durumu (turkuaz etiket + sarı değer). Joined, JoiningLobby gibi.</div>
+      <div class="var">ClientStateToString(currentClientState)</div>
+    </div>
+    <div class="item">
+      <div class="name">Role</div>
+      <div class="what">Mevcut oyuncu rolü (100+ destekli: Goose, Duck, Bounty, Sheriff, Morphling, Cannibal vb.).</div>
+      <div class="var">RoleTypeToString(currentRoleType)</div>
+    </div>
+    <div class="item">
+      <div class="name">Auto Alert Kill</div>
+      <div class="what">Youtube: vexdll — bilgi metni.</div>
+    </div>
+    <div class="item">
+      <div class="name">License Type</div>
+      <div class="what">ESSENTIAL / PREMIUM / ULTIMATE gösterimi.</div>
+      <div class="var">gameSelection (0/1/2)</div>
+    </div>
+    <div class="item">
+      <div class="name">Telegram Linki</div>
+      <div class="what">https://t.me/honorofkingsmaphack referans metni.</div>
+    </div>
+  </div>
+
+  <h3>Ana Toggle Düğmeleri (ModernToggle)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>EN Metin</th>
+        <th>TR Metin</th>
+        <th>Tür</th>
+        <th>Değişken</th>
+        <th>İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Spectator</td><td>Izleyici</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsMakeInvisible</code></td><td class="desc">Görünmez/hayalet modu.</td></tr>
+      <tr><td>Remove Roofs</td><td>Catilari Kaldir</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsChangeRoofActive</code></td><td class="desc">Harita çatılarını kaldırır (Roof.ChangeRoofActive hook).</td></tr>
+      <tr><td>Rainbow Color</td><td>Gokkusagi Renk</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsChangeColor</code></td><td class="desc">Karaktere gökkuşağı renk döngüsü (ChangeColor hook).</td></tr>
+      <tr><td>Spam Fart</td><td>Osuruk Spam</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>SpamFart</code></td><td class="desc">Sürekli osuruk emote'u tetikler (SendFart).</td></tr>
+      <tr><td>Complete Task Fast</td><td>Gorevi Hizli Bitir</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsCompleteTask1</code></td><td class="desc">Görevi anında tamamlar (CompleteTask).</td></tr>
+      <tr><td>Complete Task Quickly</td><td>Gorevi Cabuk Bitir</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>FinishTask</code></td><td class="desc">Görevleri hızlıca bitirir.</td></tr>
+      <tr><td>Complete All Tasks</td><td>Tum Gorevleri Bitir</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsCompleteAllTasks</code></td><td class="desc">Tüm görevleri otomatik tamamlar.</td></tr>
+      <tr><td>No Clip</td><td>Duvardan Gec</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>Isset_isKinematic</code></td><td class="desc">Duvarlardan geçer (Rigidbody2D.set_isKinematic).</td></tr>
+      <tr><td>No Smoke</td><td>Duman Yok</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsSmog</code></td><td class="desc">Duman efektlerini devre dışı bırakır.</td></tr>
+      <tr><td>Auto Sabotage</td><td>Otomatik Sabotaj</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsSabo</code></td><td class="desc">Otomatik sabotaj tetikler.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Aksiyon Butonları</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Call Emergency</div>
+      <div class="what">Acil toplantı butonu.</div>
+      <div class="var">Emergency = true</div>
+    </div>
+    <div class="item">
+      <div class="name">Close Alert</div>
+      <div class="what">Uyarı penceresini kapatır.</div>
+      <div class="var">ShowAlertWindow = false</div>
+    </div>
+  </div>
+
+  <h3>"--- Lobby Features ---" Durum Paneli</h3>
+  <p>24 özelliğin ON/OFF durumunu gösteren salt okunur liste. <code>LOBBY_STATUS(label_en, label_tr, enabled)</code> makrosu ile oluşturulur.</p>
+
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>İlgili Değişken</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Spectator</td><td>Izleyici</td><td><code>IsMakeInvisible</code></td></tr>
+      <tr><td>Remove Roofs</td><td>Catilari Kaldir</td><td><code>IsChangeRoofActive</code></td></tr>
+      <tr><td>Rainbow Color</td><td>Gokkusagi Renk</td><td><code>IsChangeColor</code></td></tr>
+      <tr><td>Spam Fart</td><td>Osuruk Spam</td><td><code>SpamFart</code></td></tr>
+      <tr><td>Complete Tasks</td><td>Gorevleri Bitir</td><td><code>IsCompleteAllTasks</code></td></tr>
+      <tr><td>No Clip</td><td>Duvardan Gec</td><td><code>Isset_isKinematic</code></td></tr>
+      <tr><td>No Smoke</td><td>Duman Yok</td><td><code>IsSmog</code></td></tr>
+      <tr><td>Auto Sabotage</td><td>Otomatik Sabotaj</td><td><code>IsSabo</code></td></tr>
+      <tr><td>No Fog</td><td>Sis Yok</td><td><code>NoFog</code></td></tr>
+      <tr><td>God Mode Visual</td><td>Tanri Modu Gorsel</td><td><code>IsAntiDeath</code></td></tr>
+      <tr><td>No Vent Cooldown</td><td>Havalandirma Bekleme Yok</td><td><code>IsVentcd</code></td></tr>
+      <tr><td>No Kill Cooldown</td><td>Oldurme Bekleme Yok</td><td><code>IsNoKillCooldown</code></td></tr>
+      <tr><td>ESP</td><td>ESP</td><td><code>Esp</code></td></tr>
+      <tr><td>Voice Distance</td><td>Ses Mesafesi</td><td><code>enableVoiceDistance</code></td></tr>
+      <tr><td>View Distance</td><td>Gorus Mesafesi</td><td><code>enableViewDistance</code></td></tr>
+      <tr><td>Change Hat</td><td>Sapka Degistir</td><td><code>IsChangeHat</code></td></tr>
+      <tr><td>Change Clothes</td><td>Kiyafet Degistir</td><td><code>IsChangeClothes</code></td></tr>
+      <tr><td>Change Pet</td><td>Pet Degistir</td><td><code>IsChangePet</code></td></tr>
+      <tr><td>Kill Range</td><td>Kill Menzili</td><td><code>IsMassKill</code></td></tr>
+      <tr><td>Aura Kill</td><td>Aura Kill</td><td><code>enableAuraKill</code></td></tr>
+      <tr><td>Follow Player</td><td>Oyuncuyu Takip Et</td><td><code>IsFollowPlayer</code></td></tr>
+      <tr><td>Celebrity Alert</td><td>Celebrity Uyarisi</td><td><code>EspCelebrityStatus</code></td></tr>
+      <tr><td>Lobby Bug</td><td>Lobi Bug</td><td><code>IsLobbyBug</code></td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 2 -->
+<section id="tab2">
+  <h2><span class="num">5</span> Tab 2 — ESP</h2>
+  <p>Oyuncuları görsel olarak vurgulayan ve bilgi gösteren ESP anahtarları.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>EN Metin</th>
+        <th>TR Metin</th>
+        <th>Tür</th>
+        <th>Değişken</th>
+        <th>İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable ESP</td><td>ESP Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>Esp</code></td><td class="desc">Ana ESP açma/kapama. Diğer tüm ESP seçenekleri bunun altında çalışır.</td></tr>
+      <tr><td>ESP Line</td><td>ESP Cizgi</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspLine</code></td><td class="desc">Ekranın altından oyunculara giden çizgiler çizer.</td></tr>
+      <tr><td>ESP Box</td><td>ESP Kutu</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspBox</code></td><td class="desc">2D kutu çizer.</td></tr>
+      <tr><td>ESP Name</td><td>ESP Isim</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspName</code></td><td class="desc">Oyuncu isimlerini gösterir.</td></tr>
+      <tr><td>ESP Alert</td><td>ESP Uyari</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspAlert</code></td><td class="desc">Tehlikeli roller için uyarı.</td></tr>
+      <tr><td>ESP Count</td><td>ESP Sayac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspCount</code></td><td class="desc">Hayatta kalan oyuncu sayısı.</td></tr>
+      <tr><td>ESP Kill Body</td><td>ESP Ceset</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspBodyLine</code></td><td class="desc">Öldürüldüğünde cesede çizgi çizer.</td></tr>
+      <tr><td>Celebrity Alive/Dead</td><td>Celebrity Alive/Dead</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspCelebrityStatus</code></td><td class="desc">Celebrity rolündeki oyuncunun hayatta/ölü durumunu işaretler.</td></tr>
+      <tr><td>Cuckoo Egg ESP</td><td>Guguk Yumurta ESP</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspCuckooEgg</code></td><td class="desc">Cuckoo Egg spawn yerlerini vurgular (EggSpawn hook'ları).</td></tr>
+      <tr><td>Ghost ESP</td><td>Hayalet ESP</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>EspGhost</code></td><td class="desc">Hayalet (ölü) oyuncuları gösterir/gizler.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Kutu ve İsim Özelleştirmesi (Misc sekmesinde yer alır)</h3>
+  <div class="note">
+    Bu ayarlar kod içinde Tab 5 (Misc) bölümünde yer alır, ancak ESP için geçerlidir.
+  </div>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Ayar</th>
+        <th>Türkçe</th>
+        <th>İngilizce</th>
+        <th>Tür</th>
+        <th>Değişken</th>
+        <th>Aralık</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Box Color</td><td>Kutu Rengi</td><td>Box Color</td><td><span class="tag tag-color">COLOR</span></td><td><code>espBoxColor</code></td><td class="desc">ColorEdit4 ile renk seçimi.</td></tr>
+      <tr><td>Box Height</td><td>Kutu Yukseklik</td><td>Box Height</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>boxHeightScale</code></td><td class="desc">0.5 – 2.0</td></tr>
+      <tr><td>Box Width</td><td>Kutu Genislik</td><td>Box Width</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>boxWidthScale</code></td><td class="desc">0.3 – 1.5</td></tr>
+      <tr><td>Box Thickness</td><td>Kutu Kalinlik</td><td>Box Thickness</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>boxThickness</code></td><td class="desc">0.5 – 5.0</td></tr>
+      <tr><td>Name Color</td><td>Isim Rengi</td><td>Name Color</td><td><span class="tag tag-color">COLOR</span></td><td><code>espNameColor</code></td><td class="desc">ColorEdit4 ile renk seçimi.</td></tr>
+      <tr><td>Name Y Offset</td><td>Isim Y Ofset</td><td>Name Y Offset</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>nameYOffset</code></td><td class="desc">-200 – 100 (dikey pozisyon).</td></tr>
+      <tr><td>Name Font Size</td><td>Isim Yazi Boyutu</td><td>Name Font Size</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>nameFontSize</code></td><td class="desc">10 – 30 (yazı boyutu).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 3 -->
+<section id="tab3">
+  <h2><span class="num">6</span> Tab 3 — Görünüm (Skin Changer)</h2>
+  <p>Kozmetik değiştirme.</p>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Bölüm</th>
+        <th>EN Metin</th>
+        <th>TR Metin</th>
+        <th>Tür</th>
+        <th>Değişken</th>
+        <th>İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Şapka</td>
+        <td>Hat Skin</td>
+        <td>Sapka Gorunumu</td>
+        <td><span class="tag tag-info">BAŞLIK</span></td><td>—</td>
+        <td class="desc">Şapka bölümü başlığı.</td>
+      </tr>
+      <tr>
+        <td>Şapka Seçimi</td>
+        <td>Hat Select</td>
+        <td>Sapka Sec</td>
+        <td><span class="tag tag-input">COMBO</span></td>
+        <td><code>currentHatIndex</code></td>
+        <td class="desc">Üç şapka ID'si: <code>100082146</code>, <code>100080120</code>, <code>100080112</code>.</td>
+      </tr>
+      <tr>
+        <td>Şapka Değiştir</td>
+        <td>Change Hat</td>
+        <td>Sapka Degistir</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsChangeHat</code></td>
+        <td class="desc">SpawnedPlayerHandler.ChangeHat hook'unu aktifleştirir.</td>
+      </tr>
+      <tr>
+        <td>Kıyafet</td>
+        <td>Clothes Skin</td>
+        <td>Kiyafet Gorunumu</td>
+        <td><span class="tag tag-info">BAŞLIK</span></td><td>—</td>
+        <td class="desc">Kıyafet bölümü başlığı.</td>
+      </tr>
+      <tr>
+        <td>Kıyafet Değiştir</td>
+        <td>Change Clothes</td>
+        <td>Kiyafet Degistir</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsChangeClothes</code></td>
+        <td class="desc">SpawnedPlayerHandler.ChangeClothes hook'unu aktifleştirir.</td>
+      </tr>
+      <tr>
+        <td>Pet</td>
+        <td>Pet Skin</td>
+        <td>Pet Gorunumu</td>
+        <td><span class="tag tag-info">BAŞLIK</span></td><td>—</td>
+        <td class="desc">Pet bölümü başlığı.</td>
+      </tr>
+      <tr>
+        <td>Pet Değiştir</td>
+        <td>Change Pet</td>
+        <td>Pet Degistir</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsChangePet</code></td>
+        <td class="desc">SpawnedPlayerHandler.ChangePet hook'unu aktifleştirir.</td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 4 -->
+<section id="tab4">
+  <h2><span class="num">7</span> Tab 4 — Işınlan (Teleport)</h2>
+  <p>Harita üzerinde hızlı ışınlanma noktaları + 500×400 harita önizleme görseli.</p>
+
+  <h3>Spawn Locations (Doğma Noktaları)</h3>
+  <table>
+    <thead>
+      <tr>
+        <th>EN</th>
+        <th>TR</th>
+        <th>Tür</th>
+        <th>X Koordinat</th>
+        <th>Y Koordinat</th>
+        <th>İşlev</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr><td>Court</td><td>Mahkeme</td><td><span class="tag tag-button">BUTTON</span></td><td>14.0</td><td>9.0</td><td class="desc">Mahkeme bölgesine ışınlan.</td></tr>
+      <tr><td>Tavern</td><td>Meyhane</td><td><span class="tag tag-button">BUTTON</span></td><td>-19.0</td><td>9.0</td><td class="desc">Meyhane bölgesine ışınlan.</td></tr>
+      <tr><td>Barber</td><td>Berber</td><td><span class="tag tag-button">BUTTON</span></td><td>0.0</td><td>9.0</td><td class="desc">Berber dükkanına ışınlan.</td></tr>
+      <tr><td>Landing</td><td>Inis</td><td><span class="tag tag-button">BUTTON</span></td><td>0.0</td><td>-24.0</td><td class="desc">İniş bölgesine ışınlan.</td></tr>
+      <tr><td>WareHouse</td><td>Depo</td><td><span class="tag tag-button">BUTTON</span></td><td>-9.0</td><td>-24.0</td><td class="desc">Depoya ışınlan.</td></tr>
+      <tr><td>Police</td><td>Polis</td><td><span class="tag tag-button">BUTTON</span></td><td>-9.0</td><td>-10.0</td><td class="desc">Polis karakoluna ışınlan.</td></tr>
+      <tr><td>Factory</td><td>Fabrika</td><td><span class="tag tag-button">BUTTON</span></td><td>-27.0</td><td>-10.0</td><td class="desc">Fabrikaya ışınlan.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    Her butona basıldığında <code>teleportX</code>, <code>teleportY</code> ayarlanır ve <code>shouldTeleport = true</code> yapılır. <code>PlayableEntity.TeleportTo</code> hook'u asıl ışınlanmayı yapar.
+  </div>
+</section>
+
+<!-- TAB 5 -->
+<section id="tab5">
+  <h2><span class="num">8</span> Tab 5 — Çeşitli (Misc)</h2>
+  <p>Lobi bug, ses/görüş mesafesi, sis, drone kamera ve hız kontrolü.</p>
+
+  <h3>Lobi Bug</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Lobby Bug</td>
+        <td>Lobi Bug</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsLobbyBug</code></td>
+        <td class="desc">Aktifken: "Lobideyken gizli: oyuncu listesinde yok, görünmez, host olmaz."</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Ses Mesafesi (Voice Distance)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev / Aralık</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Voice Distance</td><td>Ses Mesafesi Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>enableVoiceDistance</code></td><td class="desc">PhotonVoice handler hook'unu aktifleştirir.</td></tr>
+      <tr><td>Voice Range</td><td>Ses Menzili</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>voiceDistanceValue</code></td><td class="desc">0.0 – 100.0</td></tr>
+      <tr><td>Max Voice</td><td>Maks Ses</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">100.0 değerine ayarlar.</td></tr>
+      <tr><td>Reset Voice</td><td>Ses Sifirla</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">10.0 değerine ayarlar.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Görüş Mesafesi / Sis Menzili (View Distance)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev / Aralık</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable View Distance</td><td>Gorus Mesafesi Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>enableViewDistance</code></td><td class="desc">FogOfWar hook'unu aktifleştirir.</td></tr>
+      <tr><td>View Range</td><td>Gorus Menzili</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>viewDistValue</code></td><td class="desc">0.0 – 50.0</td></tr>
+      <tr><td>Max View</td><td>Maks Gorus</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">50.0 değerine ayarlar.</td></tr>
+      <tr><td>Reset View</td><td>Gorus Sifirla</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">5.0 değerine ayarlar.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Sis & Diğer (Fog & Other)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>No Fog (Can Hear All)</td><td>Sis Yok (Herkesi Duy)</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>funcenable</code></td><td class="desc">Tüm sesleri duymayı sağlar.</td></tr>
+      <tr><td>No Fog (Disable FogOfWar)</td><td>Sis Yok (Savas Sisi Kapat)</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>NoFog</code></td><td class="desc">FogOfWar.Disable / Enable hook'larını kullanır.</td></tr>
+      <tr><td>No Vent CoolDown</td><td>Havalandirma Bekleme Yok</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsVentcd</code></td><td class="desc">UICooldownButton hook'ları ile cooldown sıfırlama.</td></tr>
+      <tr><td>God Mode Visual</td><td>Tanri Modu Gorsel</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsAntiDeath</code></td><td class="desc">Diğerlerine canlı görünür, ölüm event'lerini engeller.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Drone Görünüm (Kamera Uzaklaş)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev / Aralık</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Drone View</td><td>Drone Gorunum Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>droneViewEnabled</code></td><td class="desc">Cinemachine VirtualCamera hook'unu aktifleştirir.</td></tr>
+      <tr><td>Camera Distance</td><td>Kamera Mesafesi</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>CamXa</code></td><td class="desc">4.5 – 50.0 (kamera zoom mesafesi).</td></tr>
+      <tr><td>Reset Camera</td><td>Kamerayi Sifirla</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">CamXa = 4.5f</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Hız Kontrolü (Speed Control)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev / Aralık</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Speed Control</td><td>Hiz Kontrolu Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsSpeedEnabled</code></td><td class="desc">LocalPlayer.GetPlayerSpeed hook'unu aktifleştirir.</td></tr>
+      <tr><td>Speed Multiplier</td><td>Hiz Carpani</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>SpeedMultiplier</code></td><td class="desc">0.1 – 5.0 (hareket hızı çarpanı).</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 6 -->
+<section id="tab6">
+  <h2><span class="num">9</span> Tab 6 — Yerel (Local)</h2>
+  <p>No CD, ışınlanma ve kill menzili.</p>
+
+  <h3>Bekleme Süresi</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">No CD</div>
+      <div class="what">No CD (Suresiz) — Kill bekleme süresini kaldırır.</div>
+      <div class="var">IsNoKillCooldown</div>
+    </div>
+  </div>
+
+  <h3>Işınlanma Ayarları (Teleport Options)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Direct Teleport</td><td>Direkt Isinlanma Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsTeleportTo</code></td><td class="desc">Direkt ışınlanma master açma/kapama.</td></tr>
+      <tr><td>Teleport To Nearest Player</td><td>En Yakin Oyuncuya Isinlan</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">En yakın oyuncuyu bulur, teleportTarget olarak ayarlar.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Belirli Oyuncuya Işınlan (TeleportList — 300px child)</h3>
+  <p>SnapshotEntities üzerinden tüm oyuncular listelenir. Her satır için 3 eylem:</p>
+
+  <div class="grid">
+    <div class="item">
+      <div class="name">Oyuncu Adı</div>
+      <div class="what">nickname() değeri. Null ise "Unknown".</div>
+    </div>
+    <div class="item">
+      <div class="name">Teleport Butonu</div>
+      <div class="what">Tıklanınca teleportTarget = entity, shouldTeleport = true.</div>
+    </div>
+    <div class="item">
+      <div class="name">Attach (Yapış) Butonu</div>
+      <div class="what">IsAttachToPlayer = true, attachTarget = entity. Her frame TeleportTo çağrılır.</div>
+    </div>
+    <div class="item">
+      <div class="name">Detach (Ayrıl) Butonu</div>
+      <div class="what">IsAttachToPlayer = false, attachTarget = nullptr.</div>
+    </div>
+  </div>
+
+  <h3>Kill Menzili (Kill Range)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev / Aralık</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Kill Range</td><td>Kill Menzili Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>IsMassKill</code></td><td class="desc">Toplu kill master anahtarı.</td></tr>
+      <tr><td>Kill Range</td><td>Kill Menzili</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>masskillRange</code></td><td class="desc">1.0 – 50.0 (birim cinsinden menzil).</td></tr>
+      <tr><td>Kill Nearest Player</td><td>En Yakin Oyuncuyu Oldur</td><td><span class="tag tag-button">BUTTON</span></td><td><code>masskillButtonPressed</code></td><td class="desc">LocalPlayer.Kill (7 parametreli) metodu çağrılır.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 11 -->
+<section id="tab11">
+  <h2><span class="num">10</span> Tab 11 — Takip (Follow)</h2>
+  <p>Oyuncuları takip etme, çekme ve yapışma.</p>
+
+  <h3>Takip Modu Seçimi</h3>
+  <table>
+    <thead>
+      <tr><th>Metin</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Follow</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsFollowPlayer</code></td>
+        <td class="desc">Teleport-follow modu — her kare hedefe ışınlanır. Açılınca IsPullPlayer ve IsAttachToPlayer kapatılır.</td>
+      </tr>
+      <tr>
+        <td>Pull</td>
+        <td><span class="tag tag-toggle">TOGGLE</span></td>
+        <td><code>IsPullPlayer</code></td>
+        <td class="desc">Hedef oyuncuyu kendi pozisyonunuza çeker. Açılınca diğer takip modları kapanır.</td>
+      </tr>
+      <tr>
+        <td>Target: &lt;name&gt; / Target: None</td>
+        <td><span class="tag tag-status">DURUM</span></td>
+        <td><code>followPlayerTargetName</code></td>
+        <td class="desc">Mevcut hedef ismini gösterir (yeşil) veya "None" (gri).</td>
+      </tr>
+      <tr>
+        <td>Clear Target</td>
+        <td><span class="tag tag-button">BUTTON</span></td>
+        <td>—</td>
+        <td class="desc"><code>ClearFollowPlayerState()</code> çağırır. Tüm takip state'lerini temizler.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <h3>Players (FollowPlayerList — 520px child)</h3>
+  <p>Tüm oyuncular <code>SnapshotEntities()</code> ile listelenir. Her satır selectable:</p>
+
+  <table>
+    <thead>
+      <tr><th>Durum</th><th>Format</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Normal</td><td><code>[ ] İsim</code> / <code>[x] İsim</code></td><td class="desc">Tıklanınca <code>SelectFollowPlayerTarget(e)</code>.</td></tr>
+      <tr><td>Ölü</td><td><code>[ ] İsim (Dead)</code></td><td class="desc"><code>isGhost()</code> true ise satır <code>BeginDisabled</code> ile grileştirilir.</td></tr>
+      <tr><td>Boş</td><td><code>No players</code></td><td class="desc">Hiç oyuncu yoksa gösterilen gri metin.</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<!-- TAB 10 -->
+<section id="tab10">
+  <h2><span class="num">11</span> Tab 10 — Brutal</h2>
+  <p>Aura Kill ve özelleştirilebilir Kill Geçmişi.</p>
+
+  <h3>Aura Kill (Uzaktan Öldürme)</h3>
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Enable Aura Kill</td><td>Uzaktan Oldurme Ac</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>enableAuraKill</code></td><td class="desc">Ana Aura Kill açma/kapama.</td></tr>
+      <tr><td>(açıklama)</td><td>(açıklama)</td><td><span class="tag tag-info">METİN</span></td><td>—</td><td class="desc">"TP to nearest -> kill -> return" / "En yakina isinlan -> oldur -> geri don".</td></tr>
+      <tr><td>Aura Kill active...</td><td>Aura Kill calisiyor...</td><td><span class="tag tag-status">DURUM</span></td><td><code>auraKillState &gt; 0</code></td><td class="desc">Çalışırken turuncu uyarı metni.</td></tr>
+      <tr><td>Aura Kill</td><td>Aura Kill</td><td><span class="tag tag-button">BUTTON</span></td><td><code>auraKillButtonPressed</code></td><td class="desc">Kırmızı buton (8px rounded). enableAuraKill true ise çalışır.</td></tr>
+      <tr><td>Toggle must be ON</td><td>Once toggle'i acin</td><td><span class="tag tag-info">UYARI</span></td><td>—</td><td class="desc">enableAuraKill false ise turuncu uyarı.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Kill Geçmişi (Kill History Feed)</h3>
+  <p>Ekranda akan "X &gt;KILLED&gt; Y" bildirimleri. Tüm özellikleri açma/kapama, konum, renk, süre ayarlanabilir.</p>
+
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>Aralık / Varsayılan</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Show Kill History</td><td>Kill Gecmisini Goster</td><td><span class="tag tag-toggle">TOGGLE</span></td><td><code>g_ShowKillHistory</code></td><td class="desc">Master anahtar.</td></tr>
+      <tr><td>Position X</td><td>Pozisyon X</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryPosX</code></td><td class="desc">0 – ekran genişliği.</td></tr>
+      <tr><td>Position Y</td><td>Pozisyon Y</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryPosY</code></td><td class="desc">0 – ekran yüksekliği.</td></tr>
+      <tr><td>Font Size</td><td>Yazi Boyutu</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryFontSz</code></td><td class="desc">14 – 50.</td></tr>
+      <tr><td>Display Duration (s)</td><td>Gosterim Suresi (s)</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryDuration</code></td><td class="desc">2.0 – 15.0 saniye.</td></tr>
+      <tr><td>Max Entries</td><td>Maks Kayit</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryMaxEntries</code></td><td class="desc">1 – 10 kayıt.</td></tr>
+      <tr><td>Row Gap</td><td>Satir Araligi</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryRowGap</code></td><td class="desc">0 – 24 px.</td></tr>
+      <tr><td>Padding</td><td>Kenar Boslugu</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryPadding</code></td><td class="desc">0 – 30 px.</td></tr>
+      <tr><td>Background Alpha</td><td>Arka Plan Saydamlik</td><td><span class="tag tag-slider">SLIDER</span></td><td><code>g_KillHistoryBgAlpha</code></td><td class="desc">0.0 – 1.0.</td></tr>
+      <tr><td>Killer Color</td><td>Olduren Renk</td><td><span class="tag tag-color">COLOR</span></td><td><code>g_KillHistoryKillerColor</code></td><td class="desc">ColorEdit4 (NoInputs).</td></tr>
+      <tr><td>Action Color</td><td>Aksiyon Renk</td><td><span class="tag tag-color">COLOR</span></td><td><code>g_KillHistoryActionColor</code></td><td class="desc">">KILLED>" aksiyon rengi.</td></tr>
+      <tr><td>Victim Color</td><td>Kurban Renk</td><td><span class="tag tag-color">COLOR</span></td><td><code>g_KillHistoryVictimColor</code></td><td class="desc">Kurban isim rengi.</td></tr>
+      <tr><td>Accent Color</td><td>Serit Renk</td><td><span class="tag tag-color">COLOR</span></td><td><code>g_KillHistoryAccentColor</code></td><td class="desc">Vurgu şerit rengi.</td></tr>
+      <tr><td>Background Color</td><td>Arka Plan Renk</td><td><span class="tag tag-color">COLOR</span></td><td><code>g_KillHistoryBgColor</code></td><td class="desc">Kutu arka plan rengi.</td></tr>
+      <tr><td>Reset Position</td><td>Pozisyonu Sifirla</td><td><span class="tag tag-button">BUTTON</span></td><td>—</td><td class="desc">Tüm değerleri varsayılana sıfırlar (X=20, Y=200, font=28, süre=6, max=4, gap=10, pad=12, alpha=0.6).</td></tr>
+      <tr><td>Clear History</td><td>Gecmisi Temizle</td><td><span class="tag tag-button">BUTTON</span></td><td><code>ClearKillHistory()</code></td><td class="desc">Kırmızı buton. Aktif gecmişi siler.</td></tr>
+      <tr><td>Active entries: N/M</td><td>Aktif kayit: N/M</td><td><span class="tag tag-status">DURUM</span></td><td><code>g_KillHistory.size()</code></td><td class="desc">Anlık kayıt sayısı.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="note">
+    <strong>Önizleme:</strong> "EXAMPLE_PLAYER &gt;KILLED&gt; VICTIM_PLAYER" canlı renkli önizleme satırı olarak gösterilir.
+  </div>
+</section>
+
+<!-- TAB 9 -->
+<section id="tab9">
+  <h2><span class="num">12</span> Tab 9 — Cihaz Sıfırla (Reset Device ID)</h2>
+  <p>HWID sıfırlama.</p>
+
+  <table>
+    <thead>
+      <tr><th>EN</th><th>TR</th><th>Tür</th><th>Değişken</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Device Management:</td><td>Cihaz Yonetimi:</td><td><span class="tag tag-info">BAŞLIK</span></td><td>—</td><td class="desc">Bölüm başlığı.</td></tr>
+      <tr><td>Reset Device ID</td><td>Cihaz ID Sifirla</td><td><span class="tag tag-button">BUTTON</span></td><td><code>ResetDeviceId()</code></td><td class="desc">Kırmızı rounded buton. Tıklanınca ayrı thread'de <code>ResetDeviceId()</code> çağırır.</td></tr>
+      <tr><td>(gerisayım)</td><td>(gerisayım)</td><td><span class="tag tag-status">DURUM</span></td><td><code>resetMsgTimer</code></td><td class="desc">Başarı durumunda 5 saniye geri sayım gösterir (yeşil metin).</td></tr>
+      <tr><td>(hata)</td><td>(hata)</td><td><span class="tag tag-info">HATA</span></td><td><code>g_ResetDeviceIdStatus</code></td><td class="desc">Hata durumunda kırmızı metin.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>ResetDeviceId() İşlem Adımları</h3>
+  <ol style="margin-left: 24px; font-size: 14px;">
+    <li>Rastgele UUID üretir (sahte cihaz ID'si için).</li>
+    <li><code>SystemInfo.get_deviceUniqueIdentifier</code> hook'lanır (yeni UUID'yi döner).</li>
+    <li>SharedPreferences temizlenir: <code>device_id</code>, <code>DeviceId</code>, <code>DeviceID</code>, <code>hwid</code>, <code>uuid</code>, <code>player_prefs</code>, <code>PlayerPrefs</code>.</li>
+    <li>Önbellek dizinindeki dosyalar silinir.</li>
+    <li>5 saniye sonra <code>RestartApp()</code> tetiklenir.</li>
+  </ol>
+</section>
+
+<!-- TAB 13 -->
+<section id="tab13">
+  <h2><span class="num">13</span> Tab 13 — Müzik Çalar (Music Player)</h2>
+  <p>Oyun içi müzik çalar.</p>
+
+  <h3>Üst Bar</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Music Player (başlık)</div>
+      <div class="what">Mor renkli (0.88, 0.55, 1.0) başlık metni.</div>
+    </div>
+    <div class="item">
+      <div class="name">Volume İkonu</div>
+      <div class="what">##music_volume_icon — Ses popup'ını açar (3 saniye sonra kapanır).</div>
+      <div class="var">g_MenuMusicVolumePanelOpen</div>
+    </div>
+    <div class="item">
+      <div class="name">Refresh İkonu</div>
+      <div class="what">##music_refresh_icon — Parça listesini yeniler.</div>
+      <div class="var">RefreshMenuMusicTracks(true)</div>
+    </div>
+  </div>
+
+  <h3>Ses Popup'ı (##music_volume_panel)</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Volume Etiketi</div>
+      <div class="what">Mor "Volume" başlığı.</div>
+    </div>
+    <div class="item">
+      <div class="name">Volume Slider</div>
+      <div class="what">##music_volume_slider — 0.0 – 1.0 arası.</div>
+      <div class="var">SetMenuMusicVolume(volume)</div>
+    </div>
+  </div>
+
+  <h3>Çalar Yüzeyi (##music_player_surface — 335px)</h3>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Kapak Görseli</div>
+      <div class="what">138×138 px, yoksa placeholder.</div>
+    </div>
+    <div class="item">
+      <div class="name">Parça Başlığı</div>
+      <div class="what">Ortalı, koyu tema.</div>
+    </div>
+    <div class="item">
+      <div class="name">İlerleme Çubuğu</div>
+      <div class="what">##music_seek_bar — Tıklanabilir.</div>
+      <div class="var">DrawMenuMusicSeekBar(ratio, duration)</div>
+    </div>
+    <div class="item">
+      <div class="name">Süre Etiketleri</div>
+      <div class="what">m:ss formatında geçen / toplam süre.</div>
+    </div>
+  </div>
+
+  <h3>Kontrol Düğmeleri (6 İkon)</h3>
+  <table>
+    <thead>
+      <tr><th>ID</th><th>Tür</th><th>İşlev</th></tr>
+    </thead>
+    <tbody>
+      <tr><td><code>##music_prev</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">Önceki parça.</td></tr>
+      <tr><td><code>##music_back</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">10 saniye geri sar.</td></tr>
+      <tr><td><code>##music_play_pause</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">Oynat / Duraklat toggle. Çalıyorsa Pause, durmuşsa Play ikonu gösterilir.</td></tr>
+      <tr><td><code>##music_fwd</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">10 saniye ileri sar.</td></tr>
+      <tr><td><code>##music_stop</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">Oynatmayı tamamen durdur.</td></tr>
+      <tr><td><code>##music_repeat</code></td><td><span class="tag tag-button">ICON</span></td><td class="desc">Tekrar modu toggle (looping).</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Çalma Listesi (##music_track_list)</h3>
+  <p>"Playlist" ayırıcı başlığı + kaydırılabilir parça listesi. Her satır:</p>
+  <div class="grid">
+    <div class="item">
+      <div class="name">Oynat/Duraklat İkonu</div>
+      <div class="what">##track_play — Aktif satırsa Pause, değilse Play (32px).</div>
+    </div>
+    <div class="item">
+      <div class="name">Parça Başlığı</div>
+      <div class="what"><code>MusicTrack.title + "##music_track"</code> formatında selectable.</div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  Mod menüsünün tüm özellik dokümantasyonu.
+</footer>
+
+</div>
+</body>
+</html>
